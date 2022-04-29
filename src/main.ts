@@ -4,6 +4,7 @@ import App from './App.vue'
 import router from './router'
 import 'tailwindcss/tailwind.css'
 import 'element-plus/dist/index.css'
+import './styles/main.sass'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 const app = createApp(App)
