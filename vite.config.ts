@@ -5,7 +5,6 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   resolve: {
-    // 配置路径别名
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
@@ -17,11 +16,11 @@ export default defineConfig({
   server:{
     proxy:{
       '/api': {
-        target: 'http://www.codeman.ink:3000',
+        target: 'http://localhost:8080',
         changeOrigin: true,
         ws:true,
         rewrite: (path) => path.replace(/^\/api/, '')
-      },
+      }
     }
   }
 })

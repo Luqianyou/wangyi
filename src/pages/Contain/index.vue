@@ -1,10 +1,5 @@
 <template>
-<div>
-  <div>123</div>
-  <div>123</div>
-  <div>123</div>
-  <div>123</div>
-  <div>123</div>
+<div class="-mt-24">
   <router-view></router-view>
 </div>
 </template>

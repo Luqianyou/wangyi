@@ -1,5 +1,5 @@
-import { ElMessage } from "element-plus/es"
 import request from '../network/request'
+import { LogError} from '../utils/LogError'
 
 interface Req {
   id: number
@@ -22,7 +22,7 @@ class MusicApi{
         throw new Error('获取信息失败')
       }
     }catch (e: any) {
-      ElMessage.error(e.message)
+      LogError(e)
     }
   }
 }
