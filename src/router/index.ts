@@ -4,11 +4,14 @@ const Index = () => import('@/pages/index.vue')
 const NotFond = () => import('@/pages/404.vue')
 
 const Contain = () => import('@/pages/Contain/index.vue')
-const FrontPage = () => import('@/pages/Contain/frontPage.vue')
-const MusicLibraryPage = () => import('@/pages/Contain/musicLibraryPage.vue')
-const SearchPage = () => import('@/pages/Contain/searchPage.vue')
+const FrontPage = () => import('@/pages/Contain/navPage/frontPage.vue')
+const MusicLibraryPage = () => import('@/pages/Contain/navPage/musicLibraryPage.vue')
+const SearchPage = () => import('@/pages/Contain/navPage/searchPage.vue')
 
 const Login = () => import('@/pages/Contain/Login/index.vue')
+const QrLogin = () => import('@/pages/Contain/Login/qrlogin.vue')
+const EmailLogin = () => import('@/pages/Contain/Login/emailLogin.vue')
+const phoneLogin = () => import('@/pages/Contain/Login/phoneLogin.vue')
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -24,7 +27,11 @@ const routes: Array<RouteRecordRaw> = [
       {path:'/contain/frontPage',name:'FrontPage',component:FrontPage},
       {path:'/contain/musicLibraryPage',name:'MusicLibraryPage',component:MusicLibraryPage},
       {path:'/contain/searchPage',name:'SearchPage',component:SearchPage},
-      {path:'/contain/login',name:'Login',component:Login}
+      {path:'/contain/login',name:'Login',component:Login,redirect:'/contain/login/qrlogin',children:[
+        {path:'/contain/login/qrlogin',name:'QrLogin',component:QrLogin},
+        {path:'/contain/login/emailLogin',name:'EmailLogin',component:EmailLogin},
+        {path:'/contain/login/phoneLogin',name:'phoneLogin',component:phoneLogin},
+      ]}
     ]
   }
   ] 

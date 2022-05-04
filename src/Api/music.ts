@@ -23,26 +23,40 @@ interface Res {
 class MusicApi{
 
   static async getLoginKey(data:loginTime){
-   let res = await request<loginTime,Res>({
-      url: '/login/qr/key',
-      method: 'get',
-      data,
-      withCredentials: true,
-   })
-   return res
+    try{
+      let res = await request<loginTime,Res>({
+        url: '/login/qr/key',
+        method: 'get',
+        data,
+        withCredentials: true,
+     })
+     if(res.code === 200){
+       return res.data.unikey
+     }
+    }catch(e){
+      console.log(e);
+    }
   }
 
   static async getLoginQr(data:loginTime & loginKey){
-    let res = await request<loginTime & loginKey,Res>({
-      url: '/login/qr/create',
-      method: 'get',
-      data,
-      withCredentials: true,
-    })
-    return res
+    try{
+      let res = await request<loginTime & loginKey,Res>({
+        url: '/login/qr/create',
+        method: 'get',
+        data,
+        withCredentials: true,
+      })
+      if(res.code ===200){
+        return res.data.qrimg
+      }
+    }catch(e){
+      console.log(e);
+      
+    }
   }
 
   static async checkLoginStatus(data:loginTime & loginKey){
+   try{
     let res = await request<loginTime & loginKey,Res>({
       url: '/login/qr/check',
       method: 'get',
@@ -50,16 +64,24 @@ class MusicApi{
       withCredentials: true,
     })
     return res
+   }catch(e){
+     console.log(e);
+     
+   }
   }
 
   static async getLoginStatus(data:loginTime){
-    let res = await request<loginTime,Res>({
-      url: '/login/status',
-      method: 'get',
-      data,
-      withCredentials: true,
-    })
-    return res
+    try{
+      let res = await request<loginTime,Res>({
+        url: '/login/status',
+        method: 'get',
+        data,
+        withCredentials: true,
+      })
+      return res
+    }catch(e){
+      console.log(e);
+    }
   }
 
   static async getSongDetailById(data: getSongDetailByIdReq){
