@@ -6,8 +6,9 @@ interface YWZRequestConfig<T> extends RequestConfig {
 }
 
 interface YWZResponse<T> {
+  profile?: any
   code: number
-  data: T
+  data?: T
 }
 
 const request = new Request({

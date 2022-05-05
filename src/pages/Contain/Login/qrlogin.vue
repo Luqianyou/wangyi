@@ -28,15 +28,17 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, onActivated, onDeactivated } from 'vue'
+import { ref, onActivated, onDeactivated } from 'vue'
 import { ElMessage } from 'element-plus/es'
 import MusicApi from '../../../Api/music'
+import router from '../../../router'
+import { useUserStore } from '../../../store/user'
+
+const userStore = useUserStore()
+
 let qrImg = ref<string>('')
 let qrTimeout = ref<boolean>(false)
 let timer: any
-onMounted(async () => {
-  await login()
-})
 
 async function login() {
   qrTimeout.value = false
@@ -64,10 +66,9 @@ async function login() {
         ElMessage.success('登录成功')
         clearInterval(timer)
         let userInfo = await MusicApi.getLoginStatus({ timerstamp: Date.now() })
-        console.log(
-          '🚀 ~ file: index.vue ~ line 47 ~ timer=setInterval ~ userInfo',
-          userInfo
-        )
+        userStore.setUserInfo(userInfo)
+        let res = userStore.getUserInfo()
+        if (res) router.push({ path: '/contain/musicLibraryPage' })
       }
     }, 3000)
   }

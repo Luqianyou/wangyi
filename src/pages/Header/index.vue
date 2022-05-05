@@ -25,16 +25,18 @@
             首页
           </div>
           <div
-            :class="activeNav === '/contain/musicLibraryPage' ? 'active' : ''"
+            :class="activeNav === '/contain/searchPage' ? 'active' : ''"
             class="nacIndex"
-            v-change="{ index: '/contain/musicLibraryPage' }"
+            v-change="{ index: '/contain/searchPage' }"
           >
             发现
           </div>
           <div
-            :class="activeNav === '/contain/searchPage' ? 'active' : ''"
+            :class="activeNav === '/contain/musicLibraryPage' ? 'active' : ''"
             class="nacIndex"
-            v-change="{ index: '/contain/searchPage' }"
+            v-change="{
+              index:'/contain/musicLibraryPage'
+            }"
           >
             音乐库
           </div>
@@ -63,8 +65,9 @@
               virtual-triggering
             >
               <div>
-                <div @click="handleLogin">登录</div>
-                <div>github网址</div>
+                <div class="loginBox" v-if="!circleUrl" @click="handleLogin">登录</div>
+                <div class="loginBox" v-else @click="logout">退出登录</div>
+                <div class="loginBox" @click="goToGitHub">github</div>
               </div>
             </el-popover>
           </div>
@@ -75,14 +78,34 @@
 </template>
 
 <script setup lang="ts">
-import { Search, ArrowLeftBold, ArrowRightBold } from '@element-plus/icons-vue'
-import { Directive, DirectiveBinding, ref, unref, watch } from 'vue'
-import { ClickOutside as vClickOutside } from 'element-plus'
-import { useRoute } from 'vue-router'
-import router from '../../router'
+import { ArrowLeftBold, ArrowRightBold, Search } from '@element-plus/icons-vue';
+import { ClickOutside as vClickOutside } from 'element-plus';
+import { Directive, DirectiveBinding, onMounted, ref, unref, watch } from 'vue';
+import { useRoute } from 'vue-router';
+import router from '../../router';
+import { useUserStore } from '../../store/user';
+
+const userStore = useUserStore()
+
+watch(
+  () => userStore.userInfo,
+  (val) => {
+    if (val) {
+      circleUrl.value = val.avatarUrl
+    }
+  }
+)
+
+onMounted(() => {
+  if(userStore.getUserInfo()?.avatarUrl){
+     circleUrl.value = userStore.getUserInfo().avatarUrl
+  }
+})
+
+const route = useRoute()
+
 let input2 = ref<string>('')
 let circleUrl = ref<string>('')
-const route = useRoute()
 
 function goBefore() {
   router.back()
@@ -106,7 +129,7 @@ watch(
 const vChange: Directive<any, void> = {
   mounted(el: HTMLElement, binding: DirectiveBinding) {
     el.addEventListener('click', () => {
-      router.push({path:binding.value.index})
+      router.push({ path: binding.value.index })
     })
   },
 }
@@ -117,8 +140,17 @@ function onClickOutside() {
   unref(popoverRef).popperRef?.delayHide?.()
 }
 
-function handleLogin(){
-  router.push({path:'/contain/login'})
+function handleLogin() {
+  router.push({ path: '/contain/login' })
+}
+
+function logout(){
+  userStore.logout()
+  router.go(0)
+}
+
+function goToGitHub(){
+  window.open('https://github.com/Luqianyou/wangyi','_blank')
 }
 </script>
 
@@ -145,4 +177,10 @@ function handleLogin(){
 
 .avatar:active
   transform: scale(0.9, 0.9)
+
+.loginBox
+  @apply font-bold text-center
+  user-select: none
+.loginBox:hover
+  @apply text-blue-200
 </style>

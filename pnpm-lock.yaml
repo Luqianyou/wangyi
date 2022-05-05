@@ -1,4 +1,4 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 specifiers:
   '@element-plus/icons-vue': ^1.1.4
@@ -15,6 +15,7 @@ specifiers:
   prettier: ^2.6.2
   sass: ^1.51.0
   tailwindcss: ^3.0.24
+  ts-md5: ^1.2.11
   typescript: ^4.5.4
   vite: ^2.9.5
   vue: ^3.2.25
@@ -27,7 +28,8 @@ dependencies:
   element-plus: registry.npmmirror.com/element-plus/2.1.11_vue@3.2.33
   lodash-es: registry.npmmirror.com/lodash-es/4.17.21
   nprogress: registry.npmmirror.com/nprogress/0.2.0
-  pinia: registry.npmmirror.com/pinia/2.0.13_typescript@4.6.3+vue@3.2.33
+  pinia: registry.npmmirror.com/pinia/2.0.13_ifhmkzsxec62ezvqv7qmanm4bq
+  ts-md5: registry.npmmirror.com/ts-md5/1.2.11
   vue: registry.npmmirror.com/vue/3.2.33
   vue-router: registry.npmmirror.com/vue-router/4.0.14_vue@3.2.33
 
@@ -597,7 +599,7 @@ packages:
       escape-html: registry.npmmirror.com/escape-html/1.0.3
       lodash: registry.npmmirror.com/lodash/4.17.21
       lodash-es: registry.npmmirror.com/lodash-es/4.17.21
-      lodash-unified: registry.npmmirror.com/lodash-unified/1.0.2_da03a4540fbd16bbaafbb96724306afd
+      lodash-unified: registry.npmmirror.com/lodash-unified/1.0.2_3ib2ivapxullxkx3xftsimdk7u
       memoize-one: registry.npmmirror.com/memoize-one/6.0.0
       normalize-wheel-es: registry.npmmirror.com/normalize-wheel-es/1.1.2
       vue: registry.npmmirror.com/vue/3.2.33
@@ -1034,7 +1036,7 @@ packages:
     version: 4.17.21
     dev: false
 
-  registry.npmmirror.com/lodash-unified/1.0.2_da03a4540fbd16bbaafbb96724306afd:
+  registry.npmmirror.com/lodash-unified/1.0.2_3ib2ivapxullxkx3xftsimdk7u:
     resolution: {integrity: sha512-OGbEy+1P+UT26CYi4opY4gebD8cWRDxAT6MAObIVQMiqYdxZr1g3QHWCToVsm31x2NkLS4K3+MC2qInaRMa39g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lodash-unified/-/lodash-unified-1.0.2.tgz}
     id: registry.npmmirror.com/lodash-unified/1.0.2
     name: lodash-unified
@@ -1171,7 +1173,7 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  registry.npmmirror.com/pinia/2.0.13_typescript@4.6.3+vue@3.2.33:
+  registry.npmmirror.com/pinia/2.0.13_ifhmkzsxec62ezvqv7qmanm4bq:
     resolution: {integrity: sha512-B7rSqm1xNpwcPMnqns8/gVBfbbi7lWTByzS6aPZ4JOXSJD4Y531rZHDCoYWBwLyHY/8hWnXljgiXp6rRyrofcw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pinia/-/pinia-2.0.13.tgz}
     id: registry.npmmirror.com/pinia/2.0.13
     name: pinia
@@ -1393,6 +1395,12 @@ packages:
     dependencies:
       is-number: registry.npmmirror.com/is-number/7.0.0
     dev: true
+
+  registry.npmmirror.com/ts-md5/1.2.11:
+    resolution: {integrity: sha512-vAwy9rEuRE6a8xa1MavIVkLFyyU0ydk4CLMFA5vOVccmQKLOuGb/BHm3oEN7XHf2FoqS+z0pSvhaad/ombd1Vg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ts-md5/-/ts-md5-1.2.11.tgz}
+    name: ts-md5
+    version: 1.2.11
+    dev: false
 
   registry.npmmirror.com/typescript/4.6.3:
     resolution: {integrity: sha512-yNIatDa5iaofVozS/uQJEl3JRWLKKGJKh6Yaiv0GLGSuhpFJe7P3SbHZ8/yjAHRQwKRoA6YZqlfjXWmVzoVSMw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/typescript/-/typescript-4.6.3.tgz}

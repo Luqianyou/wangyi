@@ -25,7 +25,13 @@ const routes: Array<RouteRecordRaw> = [
     {path:'/contain',name:'Contain',component:Contain,redirect:'/contain/frontPage',
     children:[
       {path:'/contain/frontPage',name:'FrontPage',component:FrontPage},
-      {path:'/contain/musicLibraryPage',name:'MusicLibraryPage',component:MusicLibraryPage},
+      {path:'/contain/musicLibraryPage',name:'MusicLibraryPage',component:MusicLibraryPage,beforeEnter: (to, from, next) => {
+        if(localStorage.getItem('userInfo')){
+          next()
+        }else{
+          next('/contain/login')
+        }
+      }},
       {path:'/contain/searchPage',name:'SearchPage',component:SearchPage},
       {path:'/contain/login',name:'Login',component:Login,redirect:'/contain/login/qrlogin',children:[
         {path:'/contain/login/qrlogin',name:'QrLogin',component:QrLogin},
@@ -43,4 +49,6 @@ const router = createRouter({
   routes,
 })
 
+
 export default router
+
