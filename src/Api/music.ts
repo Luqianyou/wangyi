@@ -15,7 +15,7 @@ interface loginPhoneData {
   md5_password: string | number
 }
 
-interface loginEmailData{
+interface loginEmailData {
   email: string
   md5_password: string | number
 }
@@ -86,44 +86,68 @@ class MusicApi {
         data,
         withCredentials: true,
       })
-      if(res?.data?.code === 200){
+      if (res?.data?.code === 200) {
         return res?.data?.profile
       }
     } catch (e) {
-      console.log("🚀 ~ file: music.ts ~ line 93 ~ MusicApi ~ getLoginStatus ~ e", e)
+      console.log(
+        '🚀 ~ file: music.ts ~ line 93 ~ MusicApi ~ getLoginStatus ~ e',
+        e
+      )
       LogError(new Error('获取登录状态失败'))
     }
   }
 
   static async loginByPhone(data: loginPhoneData) {
     try {
-      let res = await request<loginPhoneData,Res>({
+      let res = await request<loginPhoneData, Res>({
         url: '/login/cellphone',
         method: 'get',
         data,
       })
-      if(res.code === 200){
+      if (res.code === 200) {
         return res.profile
       }
-    } catch (e:any) {
-      console.log("🚀 ~ file: music.ts ~ line 108 ~ MusicApi ~ loginByPhone ~ e", e)
+    } catch (e: any) {
+      console.log(
+        '🚀 ~ file: music.ts ~ line 108 ~ MusicApi ~ loginByPhone ~ e',
+        e
+      )
       LogError(new Error('登录失败，请输入正确的手机号和密码'))
     }
   }
 
   static async loginByEmail(data: loginEmailData) {
-    try{
-      let res = await request<loginEmailData,Res>({
+    try {
+      let res = await request<loginEmailData, Res>({
         url: '/login',
         method: 'get',
         data,
       })
-      if(res.code === 200){
+      if (res.code === 200) {
         return res.profile
       }
-    }catch(e:any){
-    console.log("🚀 ~ file: music.ts ~ line 123 ~ MusicApi ~ loginByEmail ~ e", e)  
+    } catch (e: any) {
+      console.log(
+        '🚀 ~ file: music.ts ~ line 123 ~ MusicApi ~ loginByEmail ~ e',
+        e
+      )
       LogError(new Error('登录失败，请输入正确的邮箱和密码'))
+    }
+  }
+
+  static async getRecommendSongList() {
+    try {
+      let res = await request<{}, Res>({
+        url: '/personalized',
+        method: 'get',
+        data:{limit:10}
+      })
+      if(res.code === 200){
+        return res.result
+      }
+    } catch (e: any) {
+      LogError(e)
     }
   }
 

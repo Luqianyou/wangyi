@@ -6,7 +6,7 @@ interface YWZRequestConfig<T> extends RequestConfig {
 }
 
 interface YWZResponse<T> {
-  profile?: any
+  [x: string]: any
   code: number
   data?: T
 }
