@@ -23,6 +23,10 @@ interface getSongDetailByIdReq {
   id: number
 }
 
+interface getUserLikeListReq {
+  uid:number
+}
+
 interface Res {
   profile?: any
   data?: any
@@ -136,6 +140,21 @@ class MusicApi {
     }
   }
 
+  static async getUserLikeList(data:getUserLikeListReq & loginTime) {
+    try{
+      let res = await request<getUserLikeListReq & loginTime, Res>({
+        url:'/user/playlist',
+        method:'get',
+        data,
+      })
+      if(res.code === 200){
+        return res.playlist
+      }
+    }catch(e:any){
+      LogError(e)
+    }
+  }
+
   static async getRecommendSongList() {
     try {
       let res = await request<{}, Res>({
@@ -150,6 +169,8 @@ class MusicApi {
       LogError(e)
     }
   }
+
+  static async getMusicCardDetailById(){}
 
   static async getSongDetailById(data: getSongDetailByIdReq) {
     try {
