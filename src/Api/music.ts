@@ -23,7 +23,7 @@ interface getSongDetailByIdReq {
   id: number
 }
 
-interface getUserLikeListReq {
+interface getUserInfoListReq {
   uid:number
 }
 
@@ -140,9 +140,9 @@ class MusicApi {
     }
   }
 
-  static async getUserLikeList(data:getUserLikeListReq & loginTime) {
+  static async getUserInfoList(data:getUserInfoListReq & loginTime) {
     try{
-      let res = await request<getUserLikeListReq & loginTime, Res>({
+      let res = await request<getUserInfoListReq & loginTime, Res>({
         url:'/user/playlist',
         method:'get',
         data,
